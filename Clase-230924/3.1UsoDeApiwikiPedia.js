@@ -1,4 +1,4 @@
-const terminoBusqueda = 'Programación'; // Término que deseas buscar 
+const terminoBusqueda = 'Katana Zero'; // Término que deseas buscar 
 const url = `https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch=${terminoBusqueda}&format=json&origin=*`; 
 // Función para obtener resultados de Wikipedia 
 async function buscarEnWikipedia () { 
@@ -24,9 +24,9 @@ document.getElementById('resultados').textContent = `No se encontraron resultado
 } catch (error) { 
 // En caso de error, mostrar un mensaje 
 `No se encontraron resultados.` 
-document.getElementById('resultados').textContent = `Error al obtener los datos de Wikipedia.`; 
+document.getElementById('resultados').textContent = `Error al obtener los datos de Wikipedia.`;
+console.error ('Error:', error);
 } 
-} 
-console.error ('Error:', error); 
+}  
 // Llamar a la función para hacer la búsqueda cuando la página se carga buscarEnWikipedia (); 
 buscarEnWikipedia (); 
