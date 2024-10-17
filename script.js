@@ -13,7 +13,6 @@ Las variables guardan información
 que se puede reutilizar
 */
 
-
 //Declaracion de variables
 
 let nombre = "Juan Pablo";
