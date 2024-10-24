@@ -1,55 +1,55 @@
 // Inicializa un array vacío para almacenar las tareas
-const tasks = [];
+const tareas = [];
 
 // Función para actualizar la consola y mostrar la lista de tareas
-function updateConsole() {
+function actualizarConsola() {
     console.clear(); // Limpia la consola para mostrar la nueva lista
-    console.log("Lista de Tareas:", tasks); // Muestra la lista actual de tareas en la consola
+    console.log("Lista de Tareas:", tareas); // Muestra la lista actual de tareas en la consola
 }
 
 // Función para agregar una nueva tarea
-function addTask() {
+function agregarTarea() {
     // Obtiene el elemento de entrada de texto donde se escribe la tarea
-    const taskInput = document.getElementById('taskInput');
+    const entradaTarea = document.getElementById('taskInput');
     // Obtiene el valor del input, eliminando espacios al principio y al final
-    const taskValue = taskInput.value.trim();
+    const valorTarea = entradaTarea.value.trim();
     
     // Verifica si el valor de la tarea no está vacío
-    if (taskValue) {
-        tasks.push(taskValue); // Agrega la tarea al array de tareas
-        taskInput.value = ''; // Limpia el campo de entrada para que esté vacío para la próxima tarea
-        renderTasks(); // Llama a la función para renderizar las tareas en el DOM
-        updateConsole(); // Actualiza la consola con la nueva lista de tareas
+    if (valorTarea) {
+        tareas.push(valorTarea); // Agrega la tarea al array de tareas
+        entradaTarea.value = ''; // Limpia el campo de entrada para que esté vacío para la próxima tarea
+        renderizarTareas(); // Llama a la función para renderizar las tareas en el DOM
+        actualizarConsola(); // Actualiza la consola con la nueva lista de tareas
     }
 }
 
 // Función para eliminar una tarea por su índice
-function removeTask(index) {
-    tasks.splice(index, 1); // Elimina la tarea en el índice especificado del array de tareas
-    renderTasks(); // Renderiza nuevamente las tareas después de eliminar una
-    updateConsole(); // Actualiza la consola con la nueva lista de tareas
+function eliminarTarea(indice) {
+    tareas.splice(indice, 1); // Elimina la tarea en el índice especificado del array de tareas
+    renderizarTareas(); // Renderiza nuevamente las tareas después de eliminar una
+    actualizarConsola(); // Actualiza la consola con la nueva lista de tareas
 }
 
 // Función para renderizar la lista de tareas en el DOM
-function renderTasks() {
+function renderizarTareas() {
     // Obtiene el elemento del DOM donde se mostrarán las tareas
-    const taskListDiv = document.getElementById('taskList');
-    taskListDiv.innerHTML = ''; // Limpia el contenido previo del elemento
+    const divListaTareas = document.getElementById('taskList');
+    divListaTareas.innerHTML = ''; // Limpia el contenido previo del elemento
 
     // Itera sobre cada tarea en el array usando un bucle for
-    for (let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < tareas.length; i++) {
         // Crea un nuevo elemento div para cada tarea
-        const taskDiv = document.createElement('div');
+        const divTarea = document.createElement('div');
         // Establece el contenido del div con la tarea y un botón para eliminarla
-        taskDiv.innerHTML = `${tasks[i]} <button onclick="removeTask(${i})">Eliminar</button>`;
+        divTarea.innerHTML = `${tareas[i]} <button onclick="eliminarTarea(${i})">Eliminar</button>`;
         // Agrega el nuevo div al contenedor de tareas en el DOM
-        taskListDiv.appendChild(taskDiv);
+        divListaTareas.appendChild(divTarea);
     }
 }
 
-// Asigna un evento al botón "Agregar Tarea" que llama a addTask cuando se hace clic
-document.getElementById('addTaskButton').addEventListener('click', addTask);
-// Asigna un evento al campo de entrada que llama a addTask cuando se presiona 'Enter'
+// Asigna un evento al botón "Agregar Tarea" que llama a agregarTarea cuando se hace clic
+document.getElementById('addTaskButton').addEventListener('click', agregarTarea);
+// Asigna un evento al campo de entrada que llama a agregarTarea cuando se presiona 'Enter'
 document.getElementById('taskInput').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') addTask(); // Si se presiona 'Enter', agrega la tarea
+    if (event.key === 'Enter') agregarTarea(); // Si se presiona 'Enter', agrega la tarea
 });
